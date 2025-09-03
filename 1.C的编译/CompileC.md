@@ -1,16 +1,12 @@
-&emsp;
-# 1 Fundamental Compiling
+
+## 1 Fundamental Compiling
 >编译 C 语言相关的后缀
 <div align=center>
 <image src='imgs/filenamesuffixes1.png' width=900>
 </div>
-&emsp;
 
-
-&emsp;
-# 2 Compiling C
-
-## 2.1 Preprocessing
+## 2 Compiling C
+### 2.1 Preprocessing
 
 ```shell
 # 不会生成 .i 文件
@@ -21,8 +17,7 @@ gcc -E main.c -o helloworld.i
 - -o 选项把预处理的结果输出到指定文件      
 
 
-&emsp;
-## 2.2 Generating Assembly Language
+### 2.2 Generating Assembly Language
 ```shell
 gcc -S main.c
 gcc -S main.c -o xxx.s
@@ -32,8 +27,7 @@ gcc -S main.c -o xxx.s
 每个平台对应的汇编语言的形式是不同的，例如有很多型号的开发板，有很多型号的 CPU
 
 
-&emsp;
-## 2.3 Source File to Object File
+### 2.3 Source File to Object File
 ```shell
 gcc -c main.c
 gcc -c main.c -o xxx.o
@@ -41,8 +35,8 @@ gcc -c main.c -o xxx.o
 gcc -c main.c add.c minus.c
 ```
 
-&emsp;
-## 2.4 Single Source to Executable
+
+### 2.4 Single Source to Executable
 - 注意：后面三个命令执行后并没有按编译过程出现 .i .s 或 .o 文件，并不意味着没有经历这些过程
 
 ```shell
@@ -62,27 +56,27 @@ gcc main.c add.c minus.c -o exec
 ```
 
 
-&emsp;
-# 3 Creating a Static Library
 
-- 编译成 .o 的文件
-    ```shell
-    gcc -c [.c] -o [自定义文件名] 
-    gcc -c [.c] [.c] ...
-    ```
-- 编静态库
-    ```shell
-    ar -r [lib自定义库名.a] [.o] [.o] ...
-    ```
-- 链接成可执行文件
-    ```shell
-    gcc [.c] [.a] -o [自定义输出文件名]
-    gcc [.c] -o [自定义输出文件名] -l[库名] -L[库所在路径]
-    ```
+## 3 Creating a Static Library
+
+##### 编译成 .o 的文件
+```shell
+gcc -c [.c] -o [自定义文件名] 
+gcc -c [.c] [.c] ...
+```
+##### 编静态库
+```shell
+ar -r [lib自定义库名.a] [.o] [.o] ...
+```
+##### 链接成可执行文件
+```shell
+gcc [.c] [.a] -o [自定义输出文件名]
+gcc [.c] -o [自定义输出文件名] -l[库名] -L[库所在路径]
+```
 
 
-&emsp;
-# 4 Creating a Shared Library
+
+## 4 Creating a Shared Library
 
 >编译二进制.o文件
 ```shell
@@ -97,12 +91,12 @@ gcc -shared [.o][.o]... -o [lib自定义库名.so]
 gcc [.c/.cpp] -o [自定义可执行文件名]  -l[库名] -L[库路径] -Wl,-rpath=[库路径]
 ```
 
-&emsp;
-# 总结
-## 1 编译过程
+
+## 总结
+### 1 编译过程
 源文件.c文件 -> 预编译成.i文件 -> 编译成汇编语言.s -> 汇编成.o文件 -> 链接成可执行文件（名字自定义，后缀没关系）
 
-## 2 编译过程命令
+### 2 编译过程命令
 - 预处理： 
     ```
     gcc -E [.c源文件] -o [自定义输出文件名.i]
@@ -115,7 +109,7 @@ gcc [.c/.cpp] -o [自定义可执行文件名]  -l[库名] -L[库路径] -Wl,-rp
     ```
     gcc -c [.c源文件] [.c源文件] [...] (可选选项：-o [自定文件名])
     ```
-## 3 库
+### 3 库
 >静态库
 - 编库（先转成.o文件，再编成lib[自定库名].a）
     ```
